@@ -195,8 +195,8 @@ def upload_to_s3(local_path: str, s3_key: str, content_type: str):
     if not os.path.exists(local_path):
         log.error(f"File not found: {local_path}")
         return
-    s3.upload_file(local_path, S3_BUCKET, s3_key, ExtraArgs={"ContentType": content_type, "ACL": "public-read"})
-    log.info(f"Uploaded to S3: s3://{S3_BUCKET}/{s3_key}")
+    s3.upload_file(local_path, S3_BUCKET, s3_key, ExtraArgs={"ContentType": content_type})
+    log.info(f"Uploaded to S3 → s3://{S3_BUCKET}/{s3_key}")
 
 def main():
     try:
