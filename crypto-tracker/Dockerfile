@@ -7,6 +7,6 @@ COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the application code
-COPY tracker.py
+COPY tracker.py .
 
 CMD ["python", "tracker.py"]
