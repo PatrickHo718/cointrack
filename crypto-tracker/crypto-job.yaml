@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: crypto-tacker
+spec:
+  schedule: "0 * * * *" # Run every hour
+  concurrencyPolicy: Forbid # skip if the previous job is still running
+  successfulJobsHistoryLimit: 5 # keep last 5 successful jobs
+  failedJobsHistoryLimit: 3 # keep last 3 failed jobs
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          restartPolicy: OnFailure
+          containers:
+          - name: crypto-tracker
+            image: ghcr.io/patrickho718/cointrack:latest
+            imagePullPolicy: Always
+            env:
+            - name: DYNAMODB_TABLE_NAME
+              value: "crypto-tracking"
+            - name: S3_BUCKET_NAME
+              value: "bqu3tr-coingecko-bucket"
+            - name: AWS_REGION
+              value: "us-east-1"
