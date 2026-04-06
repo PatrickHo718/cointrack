@@ -32,14 +32,6 @@ Tracks: Bitcoin (BTC), Ethereum (ETH), Solana (SOL)
 - AWS DynamoDB
 - AWS S3 static website hosting
 
-## Project Structure
-
-crypto-tracker/
-  tracker.py        # main pipeline script
-  Dockerfile        # container definition
-  requirements.txt  # Python dependencies
-  crypto-job.yaml   # Kubernetes CronJob manifest
-
 ## How It Works
 
 1. CronJob fires every hour on the EC2 instance
