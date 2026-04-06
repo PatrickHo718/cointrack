@@ -53,8 +53,6 @@ crypto-tracker/
 5. Full price history is queried and plotted
 6. plot.png and data.csv are uploaded to S3
 
-## IAM Permissions
+## Price Chart Sample
 
-No credentials appear in any file. The EC2 instance has an attached IAM role
-that grants the pod permission to write to DynamoDB and S3 automatically
-via the instance metadata service.
+![New](price_chart_sample.png)
