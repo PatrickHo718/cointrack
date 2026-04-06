@@ -23,10 +23,6 @@ Tracks: Bitcoin (BTC), Ethereum (ETH), Solana (SOL)
 - Publishes plot.png and data.csv to a public S3 website bucket
 - Runs automatically every hour via Kubernetes CronJob
 
-## Live Plot
-
-http://bqu3tr-coingecko-bucket.s3-website-us-east-1.amazonaws.com/plot.png
-
 ## Tech Stack
 
 - Python 3.12
