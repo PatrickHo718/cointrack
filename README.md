@@ -45,3 +45,24 @@ CoinGecko API -> Python Script -> DynamoDB (storage) -> S3 (plot.png + data.csv)
 ![New](price_chart_sample.png)
 
 During the 72 hours from April 3 to April 5, 2026, all three coins showed stability with no significant spikes. Bitcoin ended the window at $68,319 (+1.38% over 24 hours), trading around $66,000 to $68,000 for most of the period before an uptick at the end of April 5. Ethereum held stable between $2,040 and $2,084 (+0.73% over 24 hours). Solana also traded in a tight range between $78 and $81, finishing slightly down at -0.67% over 24 hours.
+
+## Discussion Questions
+*Which data source you chose and why.*
+
+I chose CoinGecko because I was interested in how I could use cron jobs in combination with data visualization, where a plot can be consistently updated with new data points that help with understanding cryptocurrrency movement. 
+
+*What you observe in the data — any patterns, spikes, or surprises over the 72-hour window.*
+
+All three coins were stable during the 72-hour window. (more info below price chart sample)
+
+*How Kubernetes Secrets differ from plain environment variables and why that distinction matters.*
+
+Plain environment variables is different as it is stored in yaml configuration file, where it gets committed to GitHub and everyone who has access to the repository can see it. However, Kuberenetes Secrets is stored in the cluster's datastores and injected in the pod everytime it is ran. The distinction matters as the Kubernetes Secrets is not public, so you can hide sensitive variables, such as API keys, from the public. 
+
+*How your CronJob pods gain permission to read/write to AWS services without credentials appearing in any file.*
+
+The CronJob Pods can have access because the IAM role allow actions, such as read/write, at the infrastructure level. When a pod runs on that instance, AWS automatically injects temporary credentials into the instance. 
+
+*One thing you would do differently if you were building this pipeline for a real production system.*
+
+I would add error handling and alerting around failed CronJob runs. Currently, if a pod fails, it silently retries and the failure is only visible if you manually check kubectl logs. In production, a missed data point could corrupt trend analysis or leave gaps in the time series. I would integrate an alerting system such as AWS CloudWatch alarms on DynamoDB write failures. 
