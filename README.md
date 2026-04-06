@@ -14,11 +14,6 @@ This project uses the CoinGecko public REST API (https://api.coingecko.com). Coi
 
 CoinGecko API -> Python Script -> DynamoDB (storage) -> S3 (plot.png + data.csv)
 
-## Data Source
-
-CoinGecko free public API - no API key required.
-Tracks: Bitcoin (BTC), Ethereum (ETH), Solana (SOL)
-
 ## Feature
 
 - Fetches price, market cap, 24h volume, and 24h change for 3 coins
